@@ -23,12 +23,20 @@ namespace RestSharpCGet.API
 			return response.Categories;
 		}
 
-		//public async Task<IEnumerable<Drink>> GetDrinksByCategory(string category)
-		//{
+		public async Task<IEnumerable<Drink>> GetDrinksByCategory(string category)
+		{
 		//	var categoryNameUrlString = category.Replace(" ", "_");
-		//	var response = await _apiClient.GetFromJsonAsync<DrinkResponse>($"filter.php?c={categoryNameUrlString}");
+			var response = await _apiClient.GetFromJsonAsync<DrinkResponse>($"filter.php?c={category}");
 
-		//	return response.Drinks;
-		//}
+			return response.Drinks;
+		}
+
+		public async Task<IEnumerable<Drink>> GetDrinkDetail(string drink)
+		{
+			//	var categoryNameUrlString = category.Replace(" ", "_");
+			var response = await _apiClient.GetFromJsonAsync<DrinkResponse>($"lookup.php?i={drink}");
+
+			return response.Drinks;
+		}
 	}
 }

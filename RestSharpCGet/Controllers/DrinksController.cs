@@ -17,10 +17,17 @@ internal class DrinksController
 		return categories.Select(categories => categories.Name);
 	}
 
-	//public async Task<IEnumerable<Drink>> GetDrinksByCategory(string category)
-	//{
-	//	var categories = await _apiRepo.GetDrinksByCategory(category);
+	public async Task<IEnumerable<Drink>> GetDrinksByCategory(string category)
+	{
+		var categories = await _apiRepo.GetDrinksByCategory(category);
 
-	//	return categories;
-	//}
+		return categories;
+	}
+
+	public async Task<IEnumerable<Drink>> GetDrinkDetail(string drink)
+	{
+		var details = await _apiRepo.GetDrinkDetail(drink);
+
+		return details;
+	}
 }
