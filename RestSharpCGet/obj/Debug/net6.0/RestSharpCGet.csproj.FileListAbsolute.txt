@@ -23,3 +23,6 @@ C:\Users\bedon\source\repos\RestSharpCGet\RestSharpCGet\bin\Debug\net6.0\Aqua.dl
 C:\Users\bedon\source\repos\RestSharpCGet\RestSharpCGet\bin\Debug\net6.0\Aqua.Newtonsoft.Json.dll
 C:\Users\bedon\source\repos\RestSharpCGet\RestSharpCGet\bin\Debug\net6.0\Remote.Linq.dll
 C:\Users\bedon\source\repos\RestSharpCGet\RestSharpCGet\bin\Debug\net6.0\Remote.Linq.Newtonsoft.Json.dll
+C:\Users\bedon\source\repos\RestSharpCGet\RestSharpCGet\bin\Debug\net6.0\ConsoleTableExt.dll
+C:\Users\bedon\source\repos\RestSharpCGet\RestSharpCGet\bin\Debug\net6.0\Spectre.Console.dll
+C:\Users\bedon\source\repos\RestSharpCGet\RestSharpCGet\bin\Debug\net6.0\Spectre.Console.Cli.dll
