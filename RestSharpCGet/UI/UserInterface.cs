@@ -87,8 +87,8 @@
 
 			Console.Clear();
 			
-			Console.WriteLine($"{selectedDrink.Name}\n");
-			Console.WriteLine($"Drink Category:  {selectedDrink.Category}");
+			Console.WriteLine($"{selectedDrink.Name}");
+			Console.WriteLine($"\nDrink Category:  {selectedDrink.Category}");
 			Console.WriteLine($"\nGlass:  {selectedDrink.Glass}");
 			Console.WriteLine($"\nAlcoholic or not:  {selectedDrink.Alcoholic}");
 
