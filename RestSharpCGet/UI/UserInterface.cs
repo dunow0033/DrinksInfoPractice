@@ -90,7 +90,7 @@
 			Console.WriteLine($"{selectedDrink.Name}\n");
 			Console.WriteLine($"Drink Category:  {selectedDrink.Category}");
 			Console.WriteLine($"\nGlass:  {selectedDrink.Glass}");
-			Console.WriteLine($"\nAlcoholic:  {selectedDrink.Alcoholic}");
+			Console.WriteLine($"\nAlcoholic or not:  {selectedDrink.Alcoholic}");
 
 			var instructionsTable = new Table();
 
