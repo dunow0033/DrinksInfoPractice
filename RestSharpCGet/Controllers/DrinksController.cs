@@ -1,8 +1,4 @@
-﻿using RestSharpCGet.API;
-using RestSharpCGet.Models;
-using System.Text.Json;
-
-internal class DrinksController
+﻿internal class DrinksController
 {
 	private DrinksApiAccess _apiRepo;
 

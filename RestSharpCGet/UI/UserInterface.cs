@@ -1,20 +1,10 @@
-﻿using RestSharpCGet.API;
-using RestSharpCGet.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RestSharpCGet 
+﻿namespace RestSharpCGet
 {
 	internal class UserInterface
 	{
 		private DrinksController _controller;
 
-		private DrinksService drinksService = new();
-
-		DrinksApiAccess _apiClient;
+		private DrinksApiAccess _apiClient;
 
 		public UserInterface(DrinksController controller)
 		{
@@ -28,18 +18,25 @@ namespace RestSharpCGet
 			while (true)
 			{
 				Console.Clear();
-				foreach (string category in categories)
+				foreach (var category in categories)
 				{
 					Console.WriteLine(category);
 				}
 
-				Console.WriteLine("\nPlease enter your choice: ");
+				Console.Write("\nPlease enter your choice (0 to exit):  ");
 
 				string drink = Console.ReadLine();
 
-				if (drink.ToLower() == "exit")
+				if (drink == "0")
+					Environment.Exit(1);
+
+				while (!categories.Any(c => c.ToLower() == drink.ToLower()))
 				{
-					return;
+					Console.Write("\nCategory doesn't exit, please try again (0 to exit):  ");
+					drink = Console.ReadLine();
+
+					if (drink == "0")
+						Environment.Exit(1);
 				}
 
 				await ShowDrinksMenu(drink);
@@ -59,9 +56,27 @@ namespace RestSharpCGet
 					Console.WriteLine($"{drink.Id} -- {drink.Name}");
 				}
 
-				Console.WriteLine("\nPlease enter ID of your drink choice: ");
+				Console.Write("\nPlease enter ID of your drink choice (0 for main menu):  ");
 
 				string detailChoice = Console.ReadLine();
+
+				while(!Int32.TryParse(detailChoice, out _))
+				{
+					Console.Write("\nInvalid entry.  Please try again (0 for main menu):  ");
+					detailChoice = Console.ReadLine();
+				}
+
+				if (Int32.Parse(detailChoice) == 0)
+					await Run();
+
+				while (!drinks.Any(c => c.Id == Int32.Parse(detailChoice)))
+				{
+					Console.Write("\nInvalid choice, please try again (0 for main menu):  ");
+					detailChoice = Console.ReadLine();
+
+					if (Int32.Parse(detailChoice) == 0)
+						await Run();
+				}
 
 				await ShowDrinkDetail(Int32.Parse(detailChoice));
 				break;
@@ -70,14 +85,14 @@ namespace RestSharpCGet
 
 		public async Task ShowDrinkDetail(int choice)
 		{
-			//drinksService.GetDrinkDetail(choice);
 			DrinkDetailsDto selectedDrink = (await _controller.GetDrinkDetail(choice));
 
 			Console.Clear();
-			//var drinks = _apiClient.GetDrinkDetail(choice);
+			
 			Console.WriteLine($"{selectedDrink.Name}\n");
 			Console.WriteLine($"Drink Category:  {selectedDrink.Category}");
 			Console.WriteLine($"\nGlass:  {selectedDrink.Glass}");
+			Console.WriteLine($"\nAlcoholic:  {selectedDrink.Alcoholic}");
 
 			var instructionsTable = new Table();
 
@@ -103,40 +118,6 @@ namespace RestSharpCGet
 
 			Console.WriteLine("\nPress any key for the main menu...");
 			Console.ReadKey();
-
-
-			//Console.WriteLine($"\n\nInstructions:");
-			//Console.WriteLine($"\n{selectedDrink.Instructions}");
-			//Console.WriteLine($"\n\nIngredients");
-
-			//foreach (var ingredient in selectedDrink.Ingredients)
-			//{
-			//	//var ingredientName = ingredient.Name;
-
-			//	Console.WriteLine($"{ingredient.Name}");
-			//}
-
-			//Console.WriteLine($"\n\nMeasurements:");
-
-			//foreach (var measurement in selectedDrink.Ingredients)
-			//{
-			//	Console.WriteLine($"{measurement.Measure}");
-			//}
-
-
-
-
-
-			//if (!drinks.Any(x => x.id))
-
-			//Console.Clear();
-
-			//foreach (var drink in drinkList)
-			//{
-			//	Console.WriteLine(drink);
-			//}
-
-			//var drinkId = drinks.FirstOrDefault(c => c.Name == chosen)
 		}
 	}
 }
