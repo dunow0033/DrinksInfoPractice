@@ -4,8 +4,6 @@
 	{
 		private DrinksController _controller;
 
-		private DrinksApiAccess _apiClient;
-
 		public UserInterface(DrinksController controller)
 		{
 			_controller = controller;
